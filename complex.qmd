@@ -1,0 +1,126 @@
+---
+title: Slide title goes here
+subtitle: Slide subtitle goes here or delete this line
+author: Author name goes here
+format:
+  brandtemplate-revealjs:
+    toc: false
+    embed-resources: true
+---
+
+## Introduction
+
+This is an example of the various formats that can be used in this template.
+
+If you want to rerun this for yourself then you need to have installed python and the prerequisites in the requirements.txt file.
+
+```{python}
+#| include: false
+from brandtemplate import *
+
+# the following code sets up so that can use plotnine plots and import the font files from the template
+from plotnine import *
+from mizani.formatters import *
+import matplotlib.pyplot as plt
+
+%config InlineBackend.figure_format = 'svg'
+ 
+from matplotlib import font_manager
+font_dir = '_extensions' #looks at all subfolders inside _extensions. This is where the font files should be copied.
+font_files = font_manager.findSystemFonts(fontpaths=font_dir)
+for file in font_files:
+  font_manager.fontManager.addfont(file)
+```
+
+## Slide with single column
+
+#### Section title
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu aliquam ante. Aenean maximus, orci sit amet imperdiet euismod, lorem eros vestibulum mauris, vel laoreet est massa a urna. Nullam molestie sem elit, eu fermentum arcu accumsan eu. Nam a tellus quis erat euismod hendrerit vitae eu quam.
+
+Sed eu ipsum ante. Nullam nisi lectus, tempus non mauris facilisis, fringilla maximus metus. Cras commodo rhoncus fringilla. Proin velit nunc, hendrerit nec sem ut, gravida consectetur purus. Integer rutrum ultricies est, in consectetur quam laoreet in. Etiam dictum aliquam leo sed mollis. Phasellus mollis accumsan malesuada.
+
+## Slide with subheading
+
+### Subheading goes here
+
+#### Section title
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu aliquam ante. Aenean maximus, orci sit amet imperdiet euismod, lorem eros vestibulum mauris, vel laoreet est massa a urna. Nullam molestie sem elit, eu fermentum arcu accumsan eu. Nam a tellus quis erat euismod hendrerit vitae eu quam.
+
+Sed eu ipsum ante. Nullam nisi lectus, tempus non mauris facilisis, fringilla maximus metus. Cras commodo rhoncus fringilla. Proin velit nunc, hendrerit nec sem ut, gravida consectetur purus. Integer rutrum ultricies est, in consectetur quam laoreet in. Etiam dictum aliquam leo sed mollis. Phasellus mollis accumsan malesuada.
+
+## Slide with two columns
+
+The below is an example of how can split the page into multiple columns
+
+::: columns
+::: {.column width="50%"}
+#### Left column title
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu aliquam ante. Aenean maximus, orci sit amet imperdiet euismod, lorem eros vestibulum mauris, vel laoreet est massa a urna.
+:::
+
+::: {.column width="50%"}
+#### Right column title
+
+Sed eu ipsum ante. Nullam nisi lectus, tempus non mauris facilisis, fringilla maximus metus. Cras commodo rhoncus fringilla. Proin velit nunc, hendrerit nec sem ut, gravida consectetur purus.
+:::
+:::
+
+## Section heading {.section-slide}
+
+## Slide with graph
+
+Sed eu ipsum ante. Nullam nisi lectus, tempus non mauris facilisis, fringilla maximus metus. Cras commodo rhoncus fringilla. Proin velit nunc, hendrerit nec sem ut, gravida consectetur purus.
+
+```{python}
+#| include: false
+from plotnine.data import economics
+```
+
+```{python}
+fig = (
+  ggplot(economics, aes(x='date')) +
+  geom_line(aes(y='uempmed'), color='darkblue', size=1.5) +
+  brandtemplate_plotnine_theme() + 
+  theme(axis_text_x=element_text(rotation=90), figure_size=[22, 7]) +
+  scale_x_date(date_breaks='1 year', date_labels='%b %Y', limits=['2000-01-01', '2015-12-31']) +
+  scale_y_continuous(limits=[0,26], breaks=list(range(0, 26, 5)), expand=[0,0], labels=percent_format(scale=1))
+)
+
+plotnine_titles(fig, title='US unemployment by month between 2000 and 2015')
+```
+
+## Slide with graph and text
+
+::: columns
+::: {.column width="65%"}
+```{python}
+fig = (
+  ggplot(economics, aes(x='date')) +
+  geom_line(aes(y='uempmed'), color='darkblue', size=1.5) +
+  brandtemplate_plotnine_theme() + 
+  theme(axis_text_x=element_text(rotation=90), figure_size=[14, 7]) +
+  scale_x_date(date_breaks='1 year', date_labels='%b %Y', limits=['2000-01-01', '2015-12-31']) +
+  scale_y_continuous(limits=[0,26], breaks=list(range(0, 26, 5)), expand=[0,0], labels=percent_format(scale=1))
+)
+
+plotnine_titles(fig, title='US unemployment by month between 2000 and 2015')
+```
+:::
+
+::: {.column width="30%"}
+#### Section title
+
+-   Fusce vitae nisi id risus feugiat consectetur.
+-   Duis bibendum tortor eu orci sagittis, sit amet viverra mi sagittis.
+
+#### Section title
+
+-   Phasellus nec tellus sed ex egestas tempor.
+-   Nunc ac erat commodo, malesuada erat quis, luctus justo.
+:::
+:::
+
+## Thank you {.thank-you-slide}

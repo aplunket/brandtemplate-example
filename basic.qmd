@@ -1,0 +1,30 @@
+---
+title: Slide title goes here
+subtitle: Slide subtitle goes here or delete this line
+author: Author name goes here
+format:
+  brandtemplate-revealjs:
+    toc: false
+---
+
+## Introduction Slide
+
+This is an example to show you how you can quickly create slides in quarto.
+
+## Section page {.section-slide}
+
+## Slide with single column
+
+#### Section title
+
+Text of the slide goes here.
+
+## Slide with subheading
+
+### Subheading goes here
+
+#### Section title
+
+Text of the slide goes here.
+
+## Thank you {.thank-you-slide}
